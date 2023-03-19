@@ -32,4 +32,6 @@ int sbi_cppc_write(unsigned long reg, uint64_t val);
 const struct sbi_cppc_device *sbi_cppc_get_device(void);
 void sbi_cppc_set_device(const struct sbi_cppc_device *dev);
 
+int test_cppc_init(void);
+
 #endif

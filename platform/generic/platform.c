@@ -14,6 +14,7 @@
 #include <sbi/sbi_platform.h>
 #include <sbi/sbi_string.h>
 #include <sbi/sbi_system.h>
+#include <sbi/sbi_cppc.h>
 #include <sbi_utils/fdt/fdt_domain.h>
 #include <sbi_utils/fdt/fdt_fixup.h>
 #include <sbi_utils/fdt/fdt_helper.h>
@@ -165,6 +166,11 @@ static int generic_final_init(bool cold_boot)
 
 	if (!cold_boot)
 		return 0;
+
+#ifdef CONFIG_SBI_ECALL_CPPC
+	if (!generic_plat)
+		test_cppc_init();
+#endif
 
 	fdt = fdt_get_address();
 
