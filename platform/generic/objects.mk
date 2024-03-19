@@ -20,6 +20,7 @@ platform-runcmd = qemu-system-riscv$(PLATFORM_RISCV_XLEN) -M virt -m 256M \
 # Objects to build
 platform-objs-y += platform.o
 platform-objs-y += platform_override_modules.o
+platform-objs-$(CONFIG_SBI_ECALL_CPPC) += test_cppc.o
 
 # Blobs to build
 FW_TEXT_START=0x80000000

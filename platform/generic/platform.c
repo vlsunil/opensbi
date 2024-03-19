@@ -11,6 +11,7 @@
 #include <platform_override.h>
 #include <sbi/riscv_asm.h>
 #include <sbi/sbi_bitops.h>
+#include <sbi/sbi_cppc.h>
 #include <sbi/sbi_hartmask.h>
 #include <sbi/sbi_heap.h>
 #include <sbi/sbi_platform.h>
@@ -243,6 +244,11 @@ static int generic_final_init(bool cold_boot)
 
 	if (!cold_boot)
 		return 0;
+
+#ifdef CONFIG_SBI_ECALL_CPPC
+	if (!generic_plat)
+		test_cppc_init();
+#endif
 
 	fdt = fdt_get_address();
 
